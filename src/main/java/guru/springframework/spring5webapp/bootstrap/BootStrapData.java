@@ -38,8 +38,12 @@ public class BootStrapData implements CommandLineRunner {
         elline.getBooks().add(life);
         life.getAuthors().add(elline);
 
+        life.setPublisher(penguin);
+        penguin.getBooks().add(life);
+
         authorRepository.save(elline);
         bookRepository.save(life);
+        publisherRepository.save(penguin);
 
         Author sofia = new Author("Sofia", "Angelica");
         Book cutie = new Book("Cutie", "28052010172");
@@ -48,7 +52,12 @@ public class BootStrapData implements CommandLineRunner {
 
         authorRepository.save(sofia);
         bookRepository.save(cutie);
+        publisherRepository.save(penguin);
+
+        cutie.setPublisher(penguin);
+        penguin.getBooks().add(cutie);
 
         System.out.println("Number of books: " + bookRepository.count());
+        System.out.println("Publisher number of books: " + penguin.getBooks().size());
     }
 }
